@@ -3,9 +3,9 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import OneScientist from "./OneScientist";
 
-const Scientists = ({setToken}) => {
+const Scientists = () => {
   const [scientists, setScientists] = useState();
-  setToken(window.sessionStorage.getItem("auth_token"));
+  //setToken(window.sessionStorage.getItem("auth_token"));
   useEffect(() => {
     if (scientists == null) {
       axios.get("api/scientists").then((res) => {

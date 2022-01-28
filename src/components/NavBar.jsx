@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import { useNavigate, Outlet } from "react-router-dom";
 
-const NavBar = ({ token }) => {
+const NavBar = () => {
   let navigate = useNavigate();
 
   function handleLogout() {
@@ -25,7 +25,6 @@ const NavBar = ({ token }) => {
         console.log(error);
       });
   }
-
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -72,22 +71,20 @@ const NavBar = ({ token }) => {
               <a className="nav-link" href="#">
                 Observations
               </a>
-              {token != null ? (
+              {window.sessionStorage.getItem("auth_token") != null ? (
                 <a className="nav-link" href="#" onClick={handleLogout}>
                   Logout
-                  {console.log(token)}
                 </a>
               ) : (
                 <a className="nav-link" href="/login">
                   Login
-                  {console.log(token)}
                 </a>
               )}
             </div>
           </div>
         </div>
       </nav>
-      <Outlet/>
+      <Outlet />
     </div>
   );
 };
