@@ -16,14 +16,14 @@ const OneStar = ({ star }) => {
     );
   }
   return (
-    <div className="card">
+    <div className="card col">
       <div className="card-header">
         <h4>
           <b>{star.name}</b>
         </h4>
       </div>
       <div className="card-body">
-        <div className="card">
+        <div className="card-prop">
           <ul className="list-group list-group-flush">
             <li className="list-group-item">
               <p className="card-text">
@@ -46,12 +46,14 @@ const OneStar = ({ star }) => {
         <a href="#" className="btn btn-primary">
           Details
         </a>
+        <a href="#" className="btn btn-primary">
+          Delete
+        </a>
       </div>
       <div className="card-footer text-muted">
-        Created at: {getDate(star.created_at)}
-      </div>
-      <div className="card-footer text-muted">
-        Modified at: {getDate(star.updated_at)}
+        <i>Created at: </i>
+        {getDate(star.created_at)} &emsp; <i>Modified at: </i>
+        {getDate(star.updated_at)}
       </div>
     </div>
   );

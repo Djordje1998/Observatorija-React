@@ -14,8 +14,7 @@ const Stars = () => {
     }
   });
   return (
-    <div>
-      <h3>Teese are all stars from database.</h3>
+    <div className="cards row row-cols-1 row-cols-sm-2 g-3">
       {stars == null ? (
         <></>
       ) : (
