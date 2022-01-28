@@ -2,12 +2,15 @@ import "./css/main.css";
 import "./css/util.css";
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
   const [userData, setUserData] = useState({
     email: "",
     password: "",
   });
+
+  let navigate = useNavigate();
 
   function handleInput(e) {
     let newUserData = userData;
@@ -18,11 +21,12 @@ const LoginPage = () => {
   function handleLogin(e) {
     e.preventDefault();
     axios
-      .post("http://127.0.0.1:8000/api/login", userData)
+      .post("api/login", userData)
       .then((res) => {
         console.log(res.data);
-        if(res.data.success === true){
-            window.sessionStorage.setItem("auth_token",res.data.access_token);
+        if (res.data.success === true) {
+          window.sessionStorage.setItem("auth_token", res.data.access_token);
+          navigate("/");
         }
       })
       .catch((e) => {
@@ -82,7 +86,7 @@ const LoginPage = () => {
               </div>
 
               <div>
-                <a href="#" className="txt1">
+                <a href="/register" className="txt1">
                   Register new account here!
                 </a>
               </div>
