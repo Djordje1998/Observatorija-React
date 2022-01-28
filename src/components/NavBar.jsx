@@ -49,29 +49,45 @@ const NavBar = ({ token }) => {
             id="navbarNavAltMarkup"
           >
             <div className="navbar-nav">
-              <a className="nav-link active" aria-current="page" href="/stars">
+              <a
+                className={
+                  window.location.href.endsWith("stars")
+                    ? "nav-link active"
+                    : "nav-link"
+                }
+                href="/stars"
+              >
                 Stars
               </a>
-              <a className="nav-link" href="#">
+              <a
+                className={
+                  window.location.href.endsWith("scientists")
+                    ? "nav-link active"
+                    : "nav-link"
+                }
+                href="/scientists"
+              >
                 Scientists
               </a>
               <a className="nav-link" href="#">
                 Observations
               </a>
-              {token == null ? (
-                <a className="nav-link" href="/login">
-                  Login
-                </a>
-              ) : (
+              {token != null ? (
                 <a className="nav-link" href="#" onClick={handleLogout}>
                   Logout
+                  {console.log(token)}
+                </a>
+              ) : (
+                <a className="nav-link" href="/login">
+                  Login
+                  {console.log(token)}
                 </a>
               )}
             </div>
           </div>
         </div>
       </nav>
-      <Outlet />
+      <Outlet/>
     </div>
   );
 };

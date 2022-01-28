@@ -3,8 +3,9 @@ import axios from "axios";
 import OneStar from "./OneStar";
 import { useState, useEffect } from "react";
 
-const Stars = () => {
+const Stars = ({setToken}) => {
   const [stars, setStars] = useState();
+  setToken(window.sessionStorage.getItem("auth_token"));
   useEffect(() => {
     if (stars == null) {
       axios.get("api/stars").then((res) => {
