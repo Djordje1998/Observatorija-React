@@ -64,6 +64,9 @@
   margin: 0px;
 }
 
+.active{
+  font-weight: 900;
+}
 .card-footer{
   font-size: 12px;
   padding: 5px;
