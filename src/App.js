@@ -9,13 +9,14 @@ import Stars from "./components/Stars";
 import Scientists from "./components/Scientists";
 
 function App() {
+  const [token, setToken] = useState();
 
   return (
     <BrowserRouter className="App">
       <Routes>
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="/login" element={<LoginPage addToken={setToken}/>} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route path="/" element={<NavBar/>}>
+        <Route path="/" element={<NavBar token={token} addToken={setToken}/>}>
           <Route path="stars" element={<Stars />} />
           <Route path="scientists" element={<Scientists />} />
         </Route>
