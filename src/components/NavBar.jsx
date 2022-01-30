@@ -235,7 +235,7 @@ const NavBar = ({ token, addToken }) => {
               >
                 Get All Observations
               </Link>
-              {window.sessionStorage.getItem("auth_token") != null ? (
+              {token != null ? (
                 <a className="nav-link" href="#" onClick={handleLogout}>
                   Logout
                 </a>

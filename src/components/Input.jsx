@@ -3,18 +3,19 @@ import React from "react";
 const Input = ({ nameField, handleInput }) => {
   return (
     <div className="row mb-3">
-      <label htmlFor="colFormLabel" className="col-sm-2 col-form-label">
-        {nameField}
-      </label>
-      <div className="col-sm-10">
-        <input
-          type="text"
-          name={nameField}
-          className="form-control"
-          id="colFormLabel"
-          placeholder={nameField + "..."}
-          onInput={handleInput}
-        ></input>
+      <div className="col-sm-10 wrap-input100 validate-input m-b-16">
+        <div
+          className="wrap-input100 validate-input m-b-16"
+        >
+          <input
+            className="input100"
+            type="text"
+            name={nameField}
+            placeholder={nameField.charAt(0).toUpperCase() + nameField.slice(1) + " ..."}
+            onInput={handleInput}
+          />
+          <span className="focus-input100"></span>
+        </div>
       </div>
     </div>
   );

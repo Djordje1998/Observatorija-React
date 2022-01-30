@@ -64,6 +64,13 @@
   margin: 0px;
 }
 
+.forma{
+  width: 25%;
+  margin-left: 35%;
+  margin-right: 30%;
+  margin-top: 50px;
+}
+
 .active{
   font-weight: 900;
 }
