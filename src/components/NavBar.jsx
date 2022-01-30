@@ -1,8 +1,8 @@
 import React from "react";
 import axios from "axios";
-import { useNavigate, Outlet } from "react-router-dom";
+import { useNavigate, Outlet, Link } from "react-router-dom";
 
-const NavBar = ({ token }) => {
+const NavBar = ({ token, addToken }) => {
   let navigate = useNavigate();
   function handleLogout() {
     var config = {
@@ -17,6 +17,7 @@ const NavBar = ({ token }) => {
       .then(function (response) {
         console.log(JSON.stringify(response.data));
         window.sessionStorage.setItem("auth_token", null);
+        addToken(null);
         console.log("obrisan token");
         navigate("/login");
       })
@@ -24,9 +25,15 @@ const NavBar = ({ token }) => {
         console.log(error);
       });
   }
+
+  const handleBlur = (e) => {
+    console.log("on blur");
+    this.setState({ dropdownVisible: false });
+  };
+
   return (
     <div>
-      <nav className="navbar navbar-expand-xl navbar-light bg-light">
+      {/* <nav className="navbar navbar-expand-xl navbar-light bg-light">
         <div className="container-fluid">
           <a className="navbar-brand" href="/">
             Observatorium
@@ -59,6 +66,7 @@ const NavBar = ({ token }) => {
                   role="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
+                  onBlur={handleBlur}
                 >
                   Stars
                 </a>
@@ -67,14 +75,14 @@ const NavBar = ({ token }) => {
                   aria-labelledby="navbarDropdownMenuLink"
                 >
                   <li>
-                    <a className="dropdown-item" href="#">
+                    <Link className="dropdown-item" to="/stars/add">
                       Add
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="/stars">
+                    <Link className="dropdown-item" to="/stars">
                       Get all
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </li>
@@ -98,14 +106,14 @@ const NavBar = ({ token }) => {
                   aria-labelledby="navbarDropdownMenuLink"
                 >
                   <li>
-                    <a className="dropdown-item" href="#">
+                    <Link className="dropdown-item" to="#">
                       Add
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="/scientists">
+                    <Link className="dropdown-item" to="/scientists">
                       Get all
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </li>
@@ -143,17 +151,19 @@ const NavBar = ({ token }) => {
               {token != null ? (
                 <a className="nav-link" href="#" onClick={handleLogout}>
                   Logout
+                  {console.log(token)}
                 </a>
               ) : (
                 <a className="nav-link" href="/login">
                   Login
+                  {console.log(token)}
                 </a>
               )}
             </ul>
           </div>
         </div>
-      </nav>
-      {/* ///////////////
+      </nav> */}
+
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
           <a className="navbar-brand" href="/">
@@ -175,29 +185,56 @@ const NavBar = ({ token }) => {
             id="navbarNavAltMarkup"
           >
             <div className="navbar-nav">
-              <a
+              <Link
                 className={
                   window.location.href.endsWith("stars")
                     ? "nav-link active"
                     : "nav-link"
                 }
-                href="/stars"
+                to="/stars"
               >
-                Stars
-              </a>
-              <a
+                Get All Stars
+              </Link>
+              <Link
+                className={
+                  window.location.href.endsWith("stars/add")
+                    ? "nav-link active"
+                    : "nav-link"
+                }
+                to="/stars/add"
+              >
+                Add Stars
+              </Link>
+              <Link
                 className={
                   window.location.href.endsWith("scientists")
                     ? "nav-link active"
                     : "nav-link"
                 }
-                href="/scientists"
+                to="/scientists"
               >
-                Scientists
-              </a>
-              <a className="nav-link" href="#">
-                Observations
-              </a>
+                Get All Scientists
+              </Link>
+              <Link
+                className={
+                  window.location.href.endsWith("scientists/add")
+                    ? "nav-link active"
+                    : "nav-link"
+                }
+                to="/scientists/add"
+              >
+                Add Scientists
+              </Link>
+              <Link
+                className={
+                  window.location.href.endsWith("observations")
+                    ? "nav-link active"
+                    : "nav-link"
+                }
+                to="/observations"
+              >
+                Get All Observations
+              </Link>
               {window.sessionStorage.getItem("auth_token") != null ? (
                 <a className="nav-link" href="#" onClick={handleLogout}>
                   Logout
@@ -210,7 +247,7 @@ const NavBar = ({ token }) => {
             </div>
           </div>
         </div>
-      </nav> */}
+      </nav>
       <Outlet />
     </div>
   );
