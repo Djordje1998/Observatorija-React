@@ -1,4 +1,6 @@
 import React from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const OneScientist = ({ scientist }) => {
   function getDate(date) {
@@ -15,7 +17,38 @@ const OneScientist = ({ scientist }) => {
       date.getMinutes()
     );
   }
-  console.log(scientist);
+  let navigate = useNavigate();
+
+  function deleteScientist() {
+    if (window.sessionStorage.getItem("auth_token") == null) {
+      alert("Only users with account can delete scientist!\nLogin first!");
+      return;
+    }
+
+    var config = {
+      method: "delete",
+      url: "api/scientists/" + scientist.id,
+      headers: {
+        Authorization: "Bearer " + window.sessionStorage.getItem("auth_token"),
+      },
+    };
+
+    axios(config)
+      .then((response) => {
+        console.log(JSON.stringify(response.data));
+        if (response.data.success === true) {
+          alert(response.data.message);
+          navigate("/");
+        } else {
+          alert("Error message:\n" + response.data.message);
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+        alert("Error");
+      });
+  }
+
   return (
     <div className="card col">
       <div className="card-header">
@@ -38,7 +71,15 @@ const OneScientist = ({ scientist }) => {
             </li>
           </ul>
         </div>
-        <a href="#" className="btn btn-primary">
+        <a
+          href="#"
+          className={
+            window.sessionStorage.getItem("auth_token") == null
+              ? "btn-grey btn-primary"
+              : "btn btn-primary"
+          }
+          onClick={deleteScientist}
+        >
           Delete
         </a>
       </div>

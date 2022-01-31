@@ -20,9 +20,7 @@ function AddScientist() {
     console.log(scientistData);
   }
 
-  function handleAdd(e) {
-    e.preventDefault();
-
+  function handleAdd() {
     if (window.sessionStorage.getItem("auth_token") == null) {
       alert("Only users with account can add scientist!\nLogin first!");
       return;
@@ -41,11 +39,15 @@ function AddScientist() {
     axios(config)
       .then((response) => {
         console.log(JSON.stringify(response.data));
-        alert(response.data.message);
+        if (response.data.success === true) {
+          alert(response.data.message);
+        } else {
+         alert("Error message:\n" + response.data.message);
+        }
       })
       .catch(function (error) {
         console.log(error);
-        alert(error);
+        alert("Error");
       });
   }
 

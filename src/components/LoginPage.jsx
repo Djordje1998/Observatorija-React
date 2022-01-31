@@ -28,6 +28,8 @@ const LoginPage = ({ addToken }) => {
           window.sessionStorage.setItem("auth_token", res.data.access_token);
           addToken(res.data.access_token);
           navigate("/");
+        }else{
+            alert("Error");
         }
       })
       .catch((e) => {

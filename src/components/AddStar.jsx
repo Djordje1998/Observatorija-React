@@ -42,12 +42,15 @@ const AddStar = () => {
     axios(config)
       .then((response) => {
         console.log(JSON.stringify(response.data));
-        alert(response.data.message);
+        if (response.data.success === true) {
+          alert(response.data.message);
+        } else {
+         alert("Error message:\n" + response.data.message);
+        }
       })
       .catch(function (error) {
         console.log(error);
-        console.log(error.error);
-        alert(error.error);
+        alert("Error");
       });
   }
 

@@ -14,12 +14,15 @@ const Stars = () => {
       });
     }
   });
+
   return (
     <div className="cards row row-cols-1 row-cols-sm-2 g-3">
       {stars == null ? (
         <></>
       ) : (
-        stars.map((star) => <OneStar star={star} key={star.id} />)
+        stars.map((star) => (
+          <OneStar star={star} key={star.id} />
+        ))
       )}
     </div>
   );
