@@ -2,15 +2,15 @@ import "./css/main.css";
 import "./css/util.css";
 import Input from "./Input";
 import { useState } from "react";
+import axios from "axios";
 
 function AddScientist() {
-
   const inputNames = ["name", "email", "password"];
 
   const [scientistData, setScientistData] = useState({
     name: "",
     email: "",
-    password: ""
+    password: "",
   });
 
   function handleInput(e) {
@@ -20,11 +20,38 @@ function AddScientist() {
     console.log(scientistData);
   }
 
+  function handleAdd(e) {
+    e.preventDefault();
+
+    if (window.sessionStorage.getItem("auth_token") == null) {
+      alert("Only users with account can add scientist!\nLogin first!");
+      return;
+    }
+
+    var config = {
+      method: "post",
+      url: "api/scientists",
+      headers: {
+        Authorization: "Bearer " + window.sessionStorage.getItem("auth_token"),
+        "Content-Type": "application/json",
+      },
+      data: scientistData,
+    };
+
+    axios(config)
+      .then((response) => {
+        console.log(JSON.stringify(response.data));
+        alert(response.data.message);
+      })
+      .catch(function (error) {
+        console.log(error);
+        alert(error);
+      });
+  }
+
   return (
     <div className="col-5 forma">
-      <form
-      // onSubmit={handleAdd}
-      >
+      <form onSubmit={handleAdd}>
         <span className="login100-form-title p-b-51">Add new scientist:</span>
         <div className="col-form-label-sm ">
           {<Input nameField={inputNames[0]} handleInput={handleInput} />}

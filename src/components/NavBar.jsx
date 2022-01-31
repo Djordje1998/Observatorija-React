@@ -16,7 +16,7 @@ const NavBar = ({ token, addToken }) => {
     axios(config)
       .then(function (response) {
         console.log(JSON.stringify(response.data));
-        window.sessionStorage.setItem("auth_token", null);
+        window.sessionStorage.removeItem("auth_token");
         addToken(null);
         console.log("obrisan token");
         navigate("/login");
