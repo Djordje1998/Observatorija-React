@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const OneStar = ({ star }) => {
+const OneStar = ({ star, deleteBtn }) => {
   function getDate(date) {
     var date = new Date(date);
     return (
@@ -80,17 +80,21 @@ const OneStar = ({ star }) => {
             </li>
           </ul>
         </div>
-        <a
-          href="#"
-          className={
-            window.sessionStorage.getItem("auth_token") == null
-              ? "btn-grey btn-primary"
-              : "btn btn-primary"
-          }
-          onClick={deleteStar}
-        >
-          Delete
-        </a>
+        {deleteBtn ? (
+          <a
+            href="#"
+            className={
+              window.sessionStorage.getItem("auth_token") == null
+                ? "btn-grey btn-primary"
+                : "btn btn-primary"
+            }
+            onClick={deleteStar}
+          >
+            Delete
+          </a>
+        ) : (
+          <></>
+        )}
       </div>
       <div className="card-footer text-muted">
         <i>Created at: </i>

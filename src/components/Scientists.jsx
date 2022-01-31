@@ -21,7 +21,7 @@ const Scientists = () => {
         <></>
       ) : (
         scientists.map((scientist) => (
-          <OneScientist scientist={scientist} key={scientist.id} />
+          <OneScientist scientist={scientist} key={scientist.id} deleteBtn={true} />
         ))
       )}
     </div>

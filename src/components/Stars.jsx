@@ -21,7 +21,7 @@ const Stars = () => {
         <></>
       ) : (
         stars.map((star) => (
-          <OneStar star={star} key={star.id} />
+          <OneStar star={star} key={star.id} deleteBtn={true} />
         ))
       )}
     </div>

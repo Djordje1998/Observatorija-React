@@ -9,6 +9,7 @@ import Stars from "./components/Stars";
 import Scientists from "./components/Scientists";
 import AddStar from "./components/AddStar";
 import AddScientist from "./components/AddScientist";
+import Observations from "./components/Observations";
 
 function App() {
   const [token, setToken] = useState();
@@ -23,6 +24,7 @@ function App() {
           <Route path="stars/add" element={<AddStar />}/>
           <Route path="scientists" element={<Scientists />} />
           <Route path="scientists/add" element={<AddScientist />} />
+          <Route path="observations" element={<Observations/>} />
         </Route>
       </Routes>
     </BrowserRouter>

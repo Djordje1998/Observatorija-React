@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const OneScientist = ({ scientist }) => {
+const OneScientist = ({ scientist, deleteBtn }) => {
   function getDate(date) {
     var date = new Date(date);
     return (
@@ -71,17 +71,21 @@ const OneScientist = ({ scientist }) => {
             </li>
           </ul>
         </div>
-        <a
-          href="#"
-          className={
-            window.sessionStorage.getItem("auth_token") == null
-              ? "btn-grey btn-primary"
-              : "btn btn-primary"
-          }
-          onClick={deleteScientist}
-        >
-          Delete
-        </a>
+        {deleteBtn ? (
+          <a
+            href="#"
+            className={
+              window.sessionStorage.getItem("auth_token") == null
+                ? "btn-grey btn-primary"
+                : "btn btn-primary"
+            }
+            onClick={deleteScientist}
+          >
+            Delete
+          </a>
+        ) : (
+          <></>
+        )}
       </div>
       <div className="card-footer text-muted">
         <i>Created at: </i>
