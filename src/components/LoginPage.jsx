@@ -45,7 +45,7 @@ const LoginPage = ({ addToken }) => {
             className="login100-form validate-form flex-sb flex-w"
             onSubmit={handleLogin}
           >
-            <span className="login100-form-title p-b-51">Login</span>
+            <span className="login100-form-title p-b-51">Login into Observatorium</span>
 
             <div
               className="wrap-input100 validate-input m-b-16"

@@ -45,7 +45,7 @@ const OneScientist = ({ scientist, deleteBtn }) => {
       })
       .catch(function (error) {
         console.log(error);
-        alert("Error");
+        alert(error);
       });
   }
 
