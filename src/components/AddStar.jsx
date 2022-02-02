@@ -55,7 +55,7 @@ const AddStar = () => {
   }
 
   return (
-    <div className="col-5 forma">
+    <div className="col 12 col-sm-6 col-md-4 col-xl-2 mx-auto">
       <form onSubmit={handleAdd}>
         <span className="login100-form-title p-b-51">Add new star:</span>
         <div className="col-form-label-sm ">

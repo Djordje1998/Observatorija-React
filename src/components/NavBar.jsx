@@ -62,7 +62,7 @@ const NavBar = ({ token, addToken }) => {
                 }
                 to="/stars"
               >
-                Get All Stars
+                List Stars
               </Link>
               <Link
                 className={
@@ -82,7 +82,7 @@ const NavBar = ({ token, addToken }) => {
                 }
                 to="/scientists"
               >
-                Get All Scientists
+                List Scientists
               </Link>
               <Link
                 className={
@@ -102,7 +102,7 @@ const NavBar = ({ token, addToken }) => {
                 }
                 to="/observations"
               >
-                Get All Observations
+                List Observations
               </Link>
               {token != null ? (
                 <a className="nav-link" href="#" onClick={handleLogout}>
