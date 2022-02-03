@@ -13,13 +13,14 @@ import Observations from "./components/Observations";
 
 function App() {
   const [token, setToken] = useState();
+  const [loginedUser,setLoginedUser] = useState();
 
   return (
     <BrowserRouter className="App">
       <Routes>
-        <Route path="/login" element={<LoginPage addToken={setToken}/>} />
+        <Route path="/login" element={<LoginPage addToken={setToken} setLoginedUser={setLoginedUser}/>} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route path="/" element={<NavBar token={token} addToken={setToken}/>}>
+        <Route path="/" element={<NavBar token={token} addToken={setToken} loginedUser={loginedUser}/>}>
           <Route path="stars" element={<Stars />} />
           <Route path="stars/add" element={<AddStar />}/>
           <Route path="scientists" element={<Scientists />} />

@@ -4,7 +4,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const LoginPage = ({ addToken }) => {
+const LoginPage = ({ addToken,setLoginedUser}) => {
   const [userData, setUserData] = useState({
     email: "",
     password: "",
@@ -20,6 +20,7 @@ const LoginPage = ({ addToken }) => {
 
   function handleLogin(e) {
     e.preventDefault();
+    setLoginedUser(userData.email);
     axios
       .post("api/login", userData)
       .then((res) => {

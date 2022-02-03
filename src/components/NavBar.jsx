@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import { useNavigate, Outlet, Link } from "react-router-dom";
 
-const NavBar = ({ token, addToken }) => {
+const NavBar = ({ token, addToken, loginedUser }) => {
   let navigate = useNavigate();
   function handleLogout() {
     var config = {
@@ -72,7 +72,7 @@ const NavBar = ({ token, addToken }) => {
                 }
                 to="/stars/add"
               >
-                Add Stars
+                Add Star
               </Link>
               <Link
                 className={
@@ -92,7 +92,7 @@ const NavBar = ({ token, addToken }) => {
                 }
                 to="/scientists/add"
               >
-                Add Scientists
+                Add Scientist
               </Link>
               <Link
                 className={
@@ -115,6 +115,11 @@ const NavBar = ({ token, addToken }) => {
               )}
             </div>
           </div>
+          <span className="navbar-text">
+            {window.sessionStorage.getItem("auth_token") == null
+              ? "Log In to have full functionality of the site!"
+              : "Welcome, " + loginedUser + "!"}
+          </span>
         </div>
       </nav>
       <Outlet />
